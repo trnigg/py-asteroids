@@ -8,15 +8,28 @@ def main():
     clock = pygame.time.Clock()
     dt = 0
 
-    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    # Create containers
+    updateable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    # Assign containers to player
+    Player.containers = (updateable, drawable)
+
+    # Instatiate player and sets starting point as middle of screen.
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2) 
+
+
+
+
 
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
         screen.fill((0, 0, 0))
-        player.update(dt)
-        player.draw(screen)
+        updateable.update(dt)
+        for item in drawable:
+            item.draw(screen)
         pygame.display.flip()
         dt = clock.tick(60) / 1000
 
