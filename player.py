@@ -48,4 +48,4 @@ class Player(CircleShape):
             self.move(dt * -0.5) # Reverse at half-speed
         # Shoot key:
         if keys[pygame.K_SPACE]:
-            self.shoot(dt)
+            self.shoot()
